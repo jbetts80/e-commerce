@@ -1,4 +1,3 @@
-
 package com.jbetts80.springboot.ecommerce.exception;
 
 import org.springframework.http.HttpStatus;
@@ -15,19 +14,19 @@ import java.time.LocalDateTime;
 @RestController
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleAllExceptions(Exception exception, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(exception.getMessage(), request.getDescription(false),
-                LocalDateTime.now());
+	@ExceptionHandler(Exception.class)
+	public final ResponseEntity<Object> handleAllExceptions(Exception exception, WebRequest request) {
+		ExceptionResponse exceptionResponse = new ExceptionResponse(exception.getMessage(),
+				request.getDescription(false), LocalDateTime.now());
 
-        return new ResponseEntity<Object>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+		return new ResponseEntity<Object>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public final ResponseEntity<Object> handleProductNotFoundExceptions(Exception exception, WebRequest request) {
-        ExceptionResponse exceptionResponse = new ExceptionResponse(exception.getMessage(), request.getDescription(false),
-                LocalDateTime.now());
+	@ExceptionHandler(ProductNotFoundException.class)
+	public final ResponseEntity<Object> handleProductNotFoundExceptions(Exception exception, WebRequest request) {
+		ExceptionResponse exceptionResponse = new ExceptionResponse(exception.getMessage(),
+				request.getDescription(false), LocalDateTime.now());
 
-        return new ResponseEntity<Object>(exceptionResponse, HttpStatus.NOT_FOUND);
-    }
+		return new ResponseEntity<Object>(exceptionResponse, HttpStatus.NOT_FOUND);
+	}
 }
