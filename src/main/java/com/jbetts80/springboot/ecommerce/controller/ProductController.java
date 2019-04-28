@@ -7,6 +7,8 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,9 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+
+	@Autowired
+	private MessageSource messageSource;
 
 	@GetMapping(path = "/products/{id}")
 	public Resource<Product> findProductById(@PathVariable long id) {
@@ -63,5 +68,10 @@ public class ProductController {
 		if (product == null) {
 			throw new ProductNotFoundException("id [" + id + "]");
 		}
+	}
+
+	@GetMapping("/internacionalization")
+	public String getProductTitle() {
+		return messageSource.getMessage("product.title", null, LocaleContextHolder.getLocale());
 	}
 }

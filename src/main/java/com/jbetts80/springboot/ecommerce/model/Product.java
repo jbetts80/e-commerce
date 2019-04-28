@@ -2,11 +2,6 @@ package com.jbetts80.springboot.ecommerce.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,11 +10,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("All product data")
-@Entity
+//@Entity
 public class Product {
 
-	@Id
-	@GeneratedValue
+	//@Id
+	//@GeneratedValue
 	private long id;
 
 	@Size(min = 3, max = 14, message = "SKU must have between 3 and 14 characters")
@@ -39,7 +34,7 @@ public class Product {
 	private LocalDate creationDate;
 
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	//@ManyToOne(fetch = FetchType.LAZY)
 	private int categoryId;
 
 	protected Product() {
